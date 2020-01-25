@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #ball{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #ban{
+        width: 200px;
+        height: 20px;
+        background-color: black;
+        position: fixed;
+        left: 0;
+        bottom: 40px;
+    }
+    </style>
+</head>
+<body>
+    <div id="ball"></div>
+    <div id="ban"></div>
+    <script>
+    var oBall = document.querySelector("#ball");
+    var oBan = document.querySelector("#ban");
+    oBall.t = oBall.l = oBall.r = oBall.b = true;//判断小球与木板各个方向的碰撞
+    var sX = 0;//小球速度
+    var sY = 0;//小球速度
+    var timer = null;
+    document.onmousemove = function (){//木板跟着鼠标的移动而移动
+        var newL = event.clientX - oBan.offsetWidth/2;//木板当前位置
+        newL = Math.max(0,newL);
+        newL = Math.min(newL,document.documentElement.clientWidth-oBan.offsetWidth);
+        oBan.style.left = newL + "px";
+    }
+    document.onclick = function (){//点击页面，小球获得速度
+        sY = 8;
+        sX = Math.random()*(10-6)+6;
+        timer = setInterval(function (){
+            var newL = oBall.offsetLeft + sX;//小球当前位置
+            var newT = oBall.offsetTop + sY;//小球当前位置
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            if(newT<=0){//小球碰到页面顶端
+                newT = 0;
+                sY = -sY;
+                oDiv1.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+            }
+            if(newL<=0){//小球碰到页面左端
+                newL = 0;
+                sX = -sX;
+                oDiv1.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+            }
+            if(newL>=document.documentElement.clientWidth-oBall.offsetWidth){//小球碰到页面右端
+                newL = document.documentElement.clientWidth-oBall.offsetWidth;
+                sX = -sX;
+                oDiv1.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+            }
+            if(newT>=document.documentElement.clientHeight-oBall.offsetHeight){//小球碰到页面下端
+                clearInterval(timer);
+                alert("game over!");
+            }
+            //小球与木板的碰撞
+            var pointX = newL + oBall.offsetWidth/2;//小球圆心x
+            var pointY = newT + oBall.offsetHeight/2;//小球圆心y
+            oBall.l = pointX<oBan.offsetLeft ? true : false;//小球可能从左边碰撞木板
+            oBall.r = pointX>oBan.offsetLeft+oBan.offsetWidth ? true : false;//小球可能从右边碰撞木板
+            oBall.t = pointY<oBan.offsetTop ? true : false;//小球可能从上边碰撞木板
+            oBall.b = pointY>oBan.offsetTop+oBan.offsetHeight ? true : false;//小球可能从下边碰撞木板
+            if(newL+oBall.offsetWidth<oBan.offsetLeft||newL>oBan.offsetLeft+oBan.offsetWidth||newT+oBall.offsetHeight<oBan.offsetTop||newT>oBan.offsetTop+oBan.offsetHeight){
+               
+            }else{//小球从各个方向与木板发生碰撞
+                if(oBall.l&&!oBall.t){
+                    newL = oBan.offsetLeft - oBall.offsetWidth;
+                    sX = -sX;
+                    oDiv1.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+                }
+                if(oBall.r&&!oBall.t){
+                    newL = oBan.offsetLeft + oBan.offsetWidth;
+                    sX = -sX;
+                    oDiv1.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+                }
+                if(oBall.t){
+                    newT = oBan.offsetTop - oBall.offsetHeight;
+                    sX += Math.random()*12-6;
+                    sY = -sY;
+                    oDiv1.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+                }
+            }
+            oBall.style.left = newL + "px";
+            oBall.style.top = newT + "px";
+        },50)
+    }
+    </script>
+</body>
+</html>

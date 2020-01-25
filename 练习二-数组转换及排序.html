@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         var arr = {"0":111,"1":22,"2":3,"length":3};
+         console.log(arr.__proto__);//构造器的原型是Object
+         arr = Array.prototype.slice.call(arr);
+         console.log(arr);[111,22,3]
+         console.log(arr.__proto__);//构造器的原型是Array
+         
+         Array.prototype.numSort = function(){//给Array的原型对象添加一个方法用于数组排序
+            for(var i = 0 ;i<this.length-1;i++){//冒泡排序
+                for(var j = i+1;j<this.length;j++){
+                    var temp = null;
+                    if(this[i]>this[j]){
+                        temp = this[i];
+                        this[i] = this[j];
+                        this[j] = temp;
+                    }
+                }
+             }
+             console.log(this);
+         }
+         arr.numSort();
+         
+         var arr1 = [2,3,5,1,6];
+         arr1.numSort();
+    </script>
+</body>
+</html>

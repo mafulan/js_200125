@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // var A = function(){};
+    // var a = new A();
+    // console.log(a.__proto__); 
+    // console.log(a.__proto__.__proto__); 
+    // console.log(a.__proto__.__proto__.__proto__);
+    // var a = {};  //字面量方式
+    // console.log(a.__proto__);  //Object {}
+    // console.log(a.__proto__ === a.constructor.prototype); //true
+    // var A = function(){}; //构造器方式
+    // var a = new A();
+    // console.log(a.__proto__); //A {}
+    // console.log(a.__proto__ === a.constructor.prototype); //true
+    var a1 = {a:1};  //Object.create()方式
+    var a2 = Object.create(a1);
+    // console.log(a2.a);
+    console.log(a2.__proto__); //Object {a: 1}
+    console.log(a2.__proto__ === a2.constructor.prototype);
+    </script>
+</body>
+</html>

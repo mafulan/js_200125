@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function demo(){
+        this.a = 10;
+        return 1;
+    }
+    var obj1 = new demo();
+    var obj2 = {};
+    console.log(obj1 instanceof demo);
+    console.log(obj2 instanceof demo);
+    console.log([1] instanceof Array);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       function animal(color,sex){//父类
+           this.color = color;
+           this.sex = sex;
+       }
+       animal.prototype.eat = function(){//父类的方法
+        console.log("吃饭");
+       }
+
+       function dog(color,sex,name){//子类
+            animal.call(this,color,sex);//继承父类的属性 
+            this.name = name;
+        }
+        dog.prototype = new animal();//继承父类eat()方法
+        dog.prototype.wang = function(){//子类的方法
+                console.log("汪汪汪....");
+            }
+
+       function cat(color,sex,name){
+           animal.call(this,color,sex);
+           this.name =  name;
+           
+       }
+       cat.prototype = new animal();//继承父类eat()方法
+       cat.prototype.miao = function(){
+        console.log("喵喵....");
+       }
+
+       var oDD = new dog("white","m","Q");
+       var oCC = new cat("black","w","O");
+       console.log(oDD);
+       oDD.wang();
+       oDD.eat();
+       
+       console.log(oCC);
+       oCC.miao();
+       oCC.eat();
+   </script>
+</body>
+</html>

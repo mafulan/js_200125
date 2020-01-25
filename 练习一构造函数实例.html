@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Dog(name,age,variteies){
+            this.name=name;
+            this.age=age;
+            this.variteies =variteies;
+        }
+        Dog.prototype.color ="black";//原型链属性
+        var taidi = new Dog("mimi",2,"taidi");
+         for(var i in taidi){
+           console.log(i+":"+taidi[i]);
+        }
+        
+    </script>
+</body>
+</html>

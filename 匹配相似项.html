@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var str = "34_fg5-d9_g34-jh5-96";
+    // var re = /[a-z]/g;
+    // str = str.replace(re,function ($0){
+    //     return $0.toUpperCase();
+    // })
+    // console.log(str);
+    var re = /[^0-9a-z]/g;
+    str = str.replace(re,"*");
+    console.log(str);
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr = {"0":111,"1":22,"2":3,"length":3};
+    console.log(arr.__proto__);  //构造器原型是谁
+    var arr = Array.prototype.slice.call(arr);
+    console.log(arr.__proto__);  //构造器原型是谁
+    // numSort
+    Array.prototype.numSort = function (){
+        for(var i=0;i<this.length-1;i++){
+            for(var j=i+1;j<this.length;j++){
+                if(this[i]>this[j]){
+                    var temp = this[i];
+                    this[i] = this[j];
+                    this[j] = temp;
+                }
+            }
+        }
+    }
+    var arr1 = [2,1,3,5,4];
+    arr.numSort();
+    arr1.numSort();
+    console.log(arr);
+    console.log(arr1);
+    //arr = > [3,22,111]
+    </script>
+</body>
+</html>

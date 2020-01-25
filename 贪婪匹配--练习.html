@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = "<a href='#'>百度</a>网站<span>搜索</span>";
+        //获取其中的文本内容==>百度网站搜索
+        var re =/<.*?>/g;
+        str =str.replace(re,"");
+        console.log(str);
+    </script>
+    
+</body>
+</html>

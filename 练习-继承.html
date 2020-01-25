@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //创建一个animal父类(共有属性color、sex)，一个dog子类(共有属性name和wang())和一个cat子类(共有属性name和miao())，分别用两个子类创建一个实例，要求该实例可以通过继承为其设置color和sex，并用子类的共有属性设置对应属性和方法
+    function Animal(color,sex){
+        this.color = color;
+        this.sex = sex;
+    }
+    Animal.prototype.eat = function (){
+        console.log("咵咵的吃");
+    }
+    function Dog(name,color,sex){
+        this.name = name;
+        Animal.call(this,color,sex);
+    }
+    Dog.prototype = new Animal();
+    Dog.prototype.wang = function (){
+        console.log("汪汪汪");
+    }
+    function Cat(name,color,sex){
+        this.name = name;
+        Animal.call(this,color,sex);
+    }
+    Cat.prototype = new Animal();
+    Cat.prototype.miao = function (){
+        console.log("喵喵喵");
+    }
+    var dog1 = new Dog("Q","yellow","公");
+    console.log(dog1);
+    dog1.wang();
+    dog1.eat();
+    var cat1 = new Cat("Tom","blue","公");
+    console.log(cat1);
+    cat1.miao();
+    cat1.eat();
+    </script>
+</body>
+</html>
